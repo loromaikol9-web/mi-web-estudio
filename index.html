@@ -2,109 +2,19 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Mi Estudio 🔥</title>
-
-<style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #0f172a;
-  color: white;
-}
-
-.container {
-  padding: 20px;
-}
-
-h1 {
-  text-align: center;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.btn {
-  background: #1e293b;
-  padding: 15px;
-  border-radius: 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  background: #334155;
-}
-
-.card {
-  margin-top: 30px;
-  background: #1e293b;
-  padding: 20px;
-  border-radius: 20px;
-}
-
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  margin-top: 10px;
-}
-
-button {
-  margin-top: 15px;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  background: #22c55e;
-  color: white;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #16a34a;
-}
-</style>
-
+<title>Login</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container">
-
-<h1>🔥 Herramientas</h1>
-
-<div class="grid">
-  <div class="btn">Generar Contraseña</div>
-  <div class="btn">Generar Usuario</div>
-  <div class="btn">Generar Datos</div>
-  <div class="btn">Verificar Email</div>
-  <div class="btn">IP Info</div>
-  <div class="btn">Notas</div>
+<div class="login-box">
+  <h2>🔐 Iniciar sesión</h2>
+  <input type="text" id="user" placeholder="Usuario">
+  <input type="password" id="pass" placeholder="Contraseña">
+  <button onclick="login()">Entrar</button>
 </div>
 
-<div class="card">
-  <h2>📝 Generador de Contraseñas</h2>
-  <input type="text" id="password" placeholder="Aquí aparece...">
-  <button onclick="generar()">Generar</button>
-</div>
-
-</div>
-
-<script>
-function generar() {
-  let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  let pass = "";
-  for (let i = 0; i < 10; i++) {
-    pass += chars[Math.floor(Math.random() * chars.length)];
-  }
-  document.getElementById("password").value = pass;
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
