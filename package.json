@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/loromaikol9-web/backend#readme",
   "dependencies": {
+    "body-parser": "^2.2.2",
+    "cors": "^2.8.6",
     "express": "^5.2.1"
   }
 }
