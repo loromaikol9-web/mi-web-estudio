@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+}
+
+/* LOGIN */
+.login-box {
+  width: 300px;
+  margin: 100px auto;
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #22c55e;
+  color: white;
+  cursor: pointer;
+}
+
+/* DASHBOARD */
+.container {
+  padding: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.btn {
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #334155;
+}
+
+.card {
+  margin-top: 20px;
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 20px;
+}
