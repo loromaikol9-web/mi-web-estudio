@@ -1,19 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login</title>
-<link rel="stylesheet" href="style.css">
+  <title>Mi Web Hacker</title>
+  <style>
+    body {
+      background: black;
+      color: #00ff00;
+      font-family: monospace;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    h1 {
+      animation: glow 1s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #0f0; }
+      to { text-shadow: 0 0 20px #0f0; }
+    }
+
+    button {
+      padding: 10px;
+      background: #00ff00;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
-<div class="login-box glitch">
-  <h2>Acceso</h2>
-  <input id="user" placeholder="Usuario">
-  <input id="pass" type="password" placeholder="Contraseña">
-  <button onclick="login()">Entrar</button>
-  <p onclick="goRegister()">Crear cuenta</p>
-</div>
+<h1>🔥 web shopyfy online 🔥</h1>
+<p>Backend conectado 😈</p>
 
-<script src="script.js"></script>
+<button onclick="alert('Funciona 😎')">Probar</button>
+
 </body>
 </html>
