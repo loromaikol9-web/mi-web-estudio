@@ -1,32 +1,13 @@
+
 {
-  "name": "backend",
+  "name": "mi-web-estudio",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "web estilo hacker",
+  "main": "servidor.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node servidor.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/loromaikol9-web/backend.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/loromaikol9-web/backend/issues"
-  },
-  "homepage": "https://github.com/loromaikol9-web/backend#readme",
   "dependencies": {
-    "body-parser": "^2.2.2",
-    "cors": "^2.8.6",
-    "express": "^5.2.1"
+    "express": "^4.18.2"
   }
-}
-"dependencies": {
-  "express": "^4.18.2",
-  "bcrypt": "^5.1.0",
-  "lowdb": "^6.0.1"
 }
