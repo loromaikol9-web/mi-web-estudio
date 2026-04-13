@@ -1,64 +1,52 @@
+
 body {
-  margin: 0;
-  font-family: Arial;
-  background: #0f172a;
-  color: white;
+  background: black;
+  color: #00ffcc;
+  font-family: monospace;
 }
 
-/* LOGIN */
+/* efecto glitch */
+.glitch {
+  animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 0 red; }
+  50% { text-shadow: -2px 0 blue; }
+  100% { text-shadow: 2px 0 red; }
+}
+
 .login-box {
   width: 300px;
   margin: 100px auto;
-  background: #1e293b;
   padding: 20px;
-  border-radius: 20px;
+  border: 1px solid #00ffcc;
   text-align: center;
 }
 
-input {
+input, textarea {
   width: 100%;
-  padding: 10px;
   margin-top: 10px;
-  border-radius: 10px;
-  border: none;
+  padding: 10px;
+  background: black;
+  border: 1px solid #00ffcc;
+  color: #00ffcc;
 }
 
 button {
-  margin-top: 15px;
+  margin-top: 10px;
   padding: 10px;
+  background: #00ffcc;
   border: none;
-  border-radius: 10px;
-  background: #22c55e;
-  color: white;
   cursor: pointer;
 }
 
-/* DASHBOARD */
 .container {
   padding: 20px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-.btn {
-  background: #1e293b;
-  padding: 15px;
-  border-radius: 20px;
-  text-align: center;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background: #334155;
-}
-
 .card {
+  border: 1px solid #00ffcc;
+  padding: 15px;
   margin-top: 20px;
-  background: #1e293b;
-  padding: 20px;
-  border-radius: 20px;
 }
