@@ -1,27 +1,23 @@
+
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Dashboard</title>
+<title>Panel</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="container">
+<h1 class="glitch">⚡ PANEL</h1>
 
-<h1>🔥 Herramientas</h1>
-
-<div class="grid">
-  <div class="btn" onclick="getPassword()">Generar Contraseña</div>
-  <div class="btn">Generar Usuario</div>
-  <div class="btn">Notas</div>
-  <div class="btn">Info IP</div>
+<div class="card">
+<textarea id="note" placeholder="Escribe algo..."></textarea>
+<button onclick="saveNote()">Guardar</button>
 </div>
 
 <div class="card">
-  <h2>Resultado</h2>
-  <input type="text" id="result">
+<h3>Notas</h3>
+<div id="notes"></div>
 </div>
 
 </div>
