@@ -1,64 +1,51 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 
 const app = express();
 app.use(express.json());
 
-// 🔗 Conexión MongoDB (pon tu link aquí)
-mongoose.connect("TU_LINK_DE_MONGO")
-.then(() => console.log("Mongo conectado"))
-.catch(err => console.log(err));
+// 🔗 CONEXIÓN A MONGODB
+mongoose.connect("mongodb+srv://loromaikol9_db_user:Cristian123@cluster0.v1iwu8u.mongodb.net/miapp?retryWrites=true&w=majority")
+.then(() => console.log("✅ Conectado a MongoDB"))
+.catch(err => console.log("❌ Error MongoDB:", err));
 
-// 📦 Modelo de usuario
-const User = mongoose.model("User", {
-  email: String,
-  password: String,
-  activo: Boolean // para membresía
+// 📌 MODELO DE USUARIO
+const Usuario = mongoose.model("Usuario", {
+  username: String,
+  password: String
 });
 
-// 📝 Registro
+// 📌 REGISTRO
 app.post("/register", async (req, res) => {
-  const { email, password } = req.body;
-
-  const hash = await bcrypt.hash(password, 10);
-
-  const user = new User({
-    email,
-    password: hash,
-    activo: true // aquí decides si tiene acceso
-  });
-
-  await user.save();
-  res.send("Usuario creado");
-});
-
-// 🔐 Login
-app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-
-  const user = await User.findOne({ email });
-  if (!user) return res.status(400).send("No existe");
-
-  const valid = await bcrypt.compare(password, user.password);
-  if (!valid) return res.status(400).send("Clave incorrecta");
-
-  if (!user.activo) {
-    return res.status(403).send("Sin membresía");
+  try {
+    const nuevo = new Usuario(req.body);
+    await nuevo.save();
+    res.send("✅ Usuario registrado");
+  } catch (error) {
+    res.status(500).send("❌ Error al registrar");
   }
-
-  const token = jwt.sign({ id: user._id }, "secreto");
-
-  res.json({ token });
 });
 
-// 🔒 Ruta privada
-app.get("/privado", (req, res) => {
-  res.send("Contenido exclusivo 🔥");
+// 📌 LOGIN
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+
+  const user = await Usuario.findOne({ username, password });
+
+  if (user) {
+    res.send("✅ Login correcto");
+  } else {
+    res.send("❌ Usuario o contraseña incorrectos");
+  }
 });
 
-// 🚀 Servidor
-app.listen(3000, () => {
-  console.log("Servidor corriendo");
+// 📌 RUTA PRINCIPAL
+app.get("/", (req, res) => {
+  res.send("🔥 Servidor funcionando");
+});
+
+// 🚀 INICIAR SERVIDOR
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log("Servidor corriendo en puerto " + PORT);
 });
