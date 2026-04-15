@@ -1,8 +1,7 @@
-
 {
   "name": "mi-web-estudio",
   "version": "1.0.0",
-  "description": "web estilo hacker",
+  "description": "web estilo hack",
   "main": "servidor.js",
   "scripts": {
     "start": "node servidor.js"
