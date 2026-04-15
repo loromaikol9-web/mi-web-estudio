@@ -1,86 +1,75 @@
-
-
-const express = require("express");
-const path = require("path");
-const bcrypt = require("bcrypt");
-const { Low } = require("lowdb");
-const { JSONFile } = require("lowdb/node");
+const express = require('express');
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const cors = require('cors');
 
 const app = express();
-
 app.use(express.json());
-app.use(express.static(__dirname));
+app.use(cors());
+app.use(express.static('public'));
 
-// Base de datos
-const adapter = new JSONFile("db.json");
-const db = new Low(adapter);
+// 🔗 CONEXIÓN A MONGODB (USA TU LINK)
+mongoose.connect(process.env.MONGO_URI || "mongodb+srv://TU_USUARIO:TU_PASS@cluster.mongodb.net/miweb", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("✅ MongoDB conectado"))
+.catch(err => console.log("❌ Error MongoDB:", err));
 
-async function initDB() {
-  await db.read();
-  db.data = db.data || { users: [] };
-  await db.write();
-}
-initDB();
-
-// REGISTRO
-app.post("/register", async (req, res) => {
-  const { user, pass } = req.body;
-
-  await db.read();
-
-  const exists = db.data.users.find(u => u.user === user);
-  if (exists) return res.json({ success: false, msg: "Usuario ya existe" });
-
-  const hash = await bcrypt.hash(pass, 10);
-
-  db.data.users.push({ user, pass: hash });
-  await db.write();
-
-  res.json({ success: true });
+// 📦 MODELO USUARIO
+const User = mongoose.model('User', {
+  username: String,
+  email: String,
+  password: String
 });
 
-// LOGIN
-app.post("/login", async (req, res) => {
-  const { user, pass } = req.body;
+// 📝 REGISTRO
+app.post('/register', async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
 
-  await db.read();
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-  const found = db.data.users.find(u => u.user === user);
-  if (!found) return res.json({ success: false });
+    const user = new User({
+      username,
+      email,
+      password: hashedPassword
+    });
 
-  const ok = await bcrypt.compare(pass, found.pass);
+    await user.save();
 
-  res.json({ success: ok });
+    res.json({ message: "Usuario registrado ✅" });
+  } catch (error) {
+    res.status(500).json({ error: "Error al registrar" });
+  }
 });
 
-// GUARDAR NOTAS
-app.post("/save", async (req, res) => {
-  const { user, text } = req.body;
+// 🔐 LOGIN
+app.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-  await db.read();
+    const user = await User.findOne({ email });
 
-  const u = db.data.users.find(u => u.user === user);
-  if (!u) return res.json({ success: false });
+    if (!user) return res.status(400).json({ error: "Usuario no existe" });
 
-  u.notes = u.notes || [];
-  u.notes.push(text);
+    const valid = await bcrypt.compare(password, user.password);
 
-  await db.write();
+    if (!valid) return res.status(400).json({ error: "Contraseña incorrecta" });
 
-  res.json({ success: true });
+    res.json({ message: "Login exitoso 🔥" });
+  } catch (error) {
+    res.status(500).json({ error: "Error en login" });
+  }
 });
 
-// OBTENER NOTAS
-app.get("/notes/:user", async (req, res) => {
-  await db.read();
-
-  const u = db.data.users.find(u => u.user === req.params.user);
-
-  res.json({ notes: u?.notes || [] });
+// 🌐 RUTA PRINCIPAL
+app.get('/', (req, res) => {
+  res.send("Backend funcionando 🚀");
 });
 
+// 🚀 SERVIDOR
 const PORT = process.env.PORT || 10000;
-
 app.listen(PORT, () => {
-  console.log("🔥 Servidor hacker activo");
+  console.log(`Servidor corriendo en puerto ${PORT}`);
 });
