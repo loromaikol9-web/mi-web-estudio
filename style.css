@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: Arial;
-  background: #0b0b15;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0b0b15, #1a1a2e);
   color: white;
 }
 
@@ -9,29 +9,33 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 15px 30px;
-  background: #111;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
 }
 
 .nav a {
   color: #ccc;
-  margin-left: 15px;
+  margin-left: 20px;
   text-decoration: none;
 }
 
 .hero {
   text-align: center;
-  padding: 80px 20px;
+  padding: 100px 20px;
 }
 
 .hero h1 {
-  font-size: 28px;
+  font-size: 35px;
+  background: linear-gradient(45deg,#a78bfa,#7c3aed);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 button {
-  background: linear-gradient(45deg, #7c3aed, #a78bfa);
+  background: linear-gradient(45deg,#7c3aed,#a78bfa);
   border: none;
   padding: 12px 20px;
-  border-radius: 10px;
+  border-radius: 12px;
   color: white;
   cursor: pointer;
 }
@@ -40,17 +44,36 @@ button {
   display: flex;
   justify-content: center;
   gap: 20px;
-  padding: 40px;
+  padding: 50px;
+  flex-wrap: wrap;
 }
 
 .card {
-  background: #1a1a2e;
-  padding: 20px;
-  border-radius: 15px;
-  width: 200px;
+  background: #141427;
+  padding: 25px;
+  border-radius: 20px;
+  width: 230px;
   text-align: center;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
 
 .premium {
   border: 2px solid #a78bfa;
+}
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  width: 80%;
+  margin: 10px 0;
+}
+
+.form {
+  text-align: center;
+  margin-top: 100px;
 }
