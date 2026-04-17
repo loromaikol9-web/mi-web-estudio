@@ -1,39 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Mi Web Hacker</title>
-  <style>
-    body {
-      background: black;
-      color: #00ff00;
-      font-family: monospace;
-      text-align: center;
-      padding-top: 50px;
-    }
-
-    h1 {
-      animation: glow 1s infinite alternate;
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 5px #0f0; }
-      to { text-shadow: 0 0 20px #0f0; }
-    }
-
-    button {
-      padding: 10px;
-      background: #00ff00;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Herramientas PRO</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>🔥 web shopyfy online 🔥</h1>
-<p>Backend conectado 😈</p>
+<nav class="nav">
+  <h2>⚡ HERRAMIENTAS PRO</h2>
+  <div>
+    <a href="#">Inicio</a>
+    <a href="#planes">Planes</a>
+    <a href="login.html">Login</a>
+  </div>
+</nav>
 
-<button onclick="alert('Funciona 😎')">Probar</button>
+<section class="hero">
+  <h1>Potencia tu trabajo con herramientas PRO</h1>
+  <p>Accede a funciones exclusivas rápidas y seguras</p>
 
+  <button onclick="irPlanes()">Ver Planes</button>
+</section>
+
+<section id="planes" class="planes">
+  <div class="card">
+    <h2>FREE</h2>
+    <p>$0</p>
+    <button onclick="location.href='register.html'">Empezar</button>
+  </div>
+
+  <div class="card premium">
+    <h2>PREMIUM</h2>
+    <p>$10 / mes</p>
+    <button onclick="pagar()">Comprar</button>
+  </div>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>
