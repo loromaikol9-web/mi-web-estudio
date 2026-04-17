@@ -1,52 +1,56 @@
-
 body {
-  background: black;
-  color: #00ffcc;
-  font-family: monospace;
+  margin: 0;
+  font-family: Arial;
+  background: #0b0b15;
+  color: white;
 }
 
-/* efecto glitch */
-.glitch {
-  animation: glitch 1s infinite;
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: #111;
 }
 
-@keyframes glitch {
-  0% { text-shadow: 2px 0 red; }
-  50% { text-shadow: -2px 0 blue; }
-  100% { text-shadow: 2px 0 red; }
+.nav a {
+  color: #ccc;
+  margin-left: 15px;
+  text-decoration: none;
 }
 
-.login-box {
-  width: 300px;
-  margin: 100px auto;
-  padding: 20px;
-  border: 1px solid #00ffcc;
+.hero {
   text-align: center;
+  padding: 80px 20px;
 }
 
-input, textarea {
-  width: 100%;
-  margin-top: 10px;
-  padding: 10px;
-  background: black;
-  border: 1px solid #00ffcc;
-  color: #00ffcc;
+.hero h1 {
+  font-size: 28px;
 }
 
 button {
-  margin-top: 10px;
-  padding: 10px;
-  background: #00ffcc;
+  background: linear-gradient(45deg, #7c3aed, #a78bfa);
   border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  color: white;
   cursor: pointer;
 }
 
-.container {
-  padding: 20px;
+.planes {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
 }
 
 .card {
-  border: 1px solid #00ffcc;
-  padding: 15px;
-  margin-top: 20px;
+  background: #1a1a2e;
+  padding: 20px;
+  border-radius: 15px;
+  width: 200px;
+  text-align: center;
+}
+
+.premium {
+  border: 2px solid #a78bfa;
 }
