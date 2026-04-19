@@ -3,9 +3,9 @@ function irRegistro() {
 }
 
 function irPlanes() {
-  document.querySelector(".planes").scrollIntoView({ behavior: "smooth" });
+  document.querySelector("Oro plata bronce").scrollIntoView({ behavior: "smooth" });
 }
 
 function irPremium() {
-  alert("Aquí puedes poner pagos después 💳");
+  alert("Nequi Bancolombia Payu Psi");
 }
