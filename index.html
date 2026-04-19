@@ -5,38 +5,46 @@
 <title>Herramientas PRO</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<nav class="nav">
-  <h2>⚡ HERRAMIENTAS PRO</h2>
-  <div>
-    <a href="#">Inicio</a>
-    <a href="#planes">Planes</a>
-    <a href="login.html">Login</a>
-  </div>
-</nav>
+<header>
+  <h2>🚀 HERRAMIENTAS PRO</h2>
+  <nav>
+    <a href="/">Inicio</a>
+    <a href="#">Planes</a>
+    <a href="/register">Registro</a>
+    <a href="/login">Login</a>
+  </nav>
+</header>
 
 <section class="hero">
-  <h1>Potencia tu trabajo con herramientas PRO</h1>
-  <p>Accede a funciones exclusivas rápidas y seguras</p>
+  <h1>Potencia tu trabajo<br>con <span>Herramientas PRO</span></h1>
+  <p>Accede a las mejores herramientas en un solo lugar. Rápido, seguro y profesional.</p>
 
-  <button onclick="irPlanes()">Ver Planes</button>
-</section>
-
-<section id="planes" class="planes">
-  <div class="card">
-    <h2>FREE</h2>
-    <p>$0</p>
-    <button onclick="location.href='register.html'">Empezar</button>
-  </div>
-
-  <div class="card premium">
-    <h2>PREMIUM</h2>
-    <p>$10 / mes</p>
-    <button onclick="pagar()">Comprar</button>
+  <div class="btns">
+    <button>Ver Planes</button>
+    <button class="demo">Ver Demo</button>
   </div>
 </section>
 
-<script src="script.js"></script>
+<section class="planes">
+  <h2>Elige tu plan</h2>
+
+  <div class="cards">
+    <div class="card">
+      <h3>FREE</h3>
+      <p>$0</p>
+      <button onclick="location.href='/register'">Comenzar</button>
+    </div>
+
+    <div class="card premium">
+      <h3>PREMIUM</h3>
+      <p>$10 / mes</p>
+      <button>Obtener Premium</button>
+    </div>
+  </div>
+</section>
+
 </body>
 </html>
