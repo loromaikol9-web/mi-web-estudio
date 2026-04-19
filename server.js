@@ -10,36 +10,34 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 
 // MongoDB
-mongoose.connect(process.env.MONGO_URI mongodb+srv://loromaikol9_db_user:Cristian123@cluster0.v1iwu8u.mongodb.net/miapp?retryWrites=true&w=majority)
-.then(() => console.log("✅ Mongo conectado"))
-.catch(err => console.log("❌ Error Mongo:", err));
+mongoose.connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/proweb")
+.then(() => console.log("✅ MongoDB conectado"))
+.catch(err => console.log("❌ Error:", err));
 
-// Modelo usuario
+// Modelo
 const Usuario = mongoose.model("Usuario", {
   username: String,
   password: String
 });
 
-// Ruta principal
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
+// RUTAS HTML
+app.get("/", (req, res) => res.sendFile(path.join(__dirname, "index.html")));
+app.get("/login", (req, res) => res.sendFile(path.join(__dirname, "login.html")));
+app.get("/register", (req, res) => res.sendFile(path.join(__dirname, "register.html")));
+app.get("/dashboard", (req, res) => res.sendFile(path.join(__dirname, "dashboard.html")));
 
-// Registro
+// REGISTER
 app.post("/register", async (req, res) => {
-  try {
-    const { username, password } = req.body;
+  const { username, password } = req.body;
+  const existe = await Usuario.findOne({ username });
 
-    const nuevo = new Usuario({ username, password });
-    await nuevo.save();
+  if (existe) return res.json({ ok: false, msg: "Usuario ya existe" });
 
-    res.json({ ok: true });
-  } catch (err) {
-    res.status(500).json({ ok: false });
-  }
+  await new Usuario({ username, password }).save();
+  res.json({ ok: true });
 });
 
-// Login
+// LOGIN
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
@@ -52,5 +50,4 @@ app.post("/login", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("🚀 Servidor funcionando"));
+app.listen(3000, () => console.log("🚀 Servidor activo"));
