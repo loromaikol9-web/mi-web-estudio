@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 
 // MongoDB
-mongoose.connect(process.env.MONGO_URI||"mongodb+srv://loromaikol9_db_user:Cristian123@cluster0.v1iwu8u.mongodb.net/miapp?retryWrites=true&w=majority)
+mongoose.connect(process.env.MONGO_URI mongodb+srv://loromaikol9_db_user:Cristian123@cluster0.v1iwu8u.mongodb.net/miapp?retryWrites=true&w=majority)
 .then(() => console.log("✅ Mongo conectado"))
 .catch(err => console.log("❌ Error Mongo:", err));
 
