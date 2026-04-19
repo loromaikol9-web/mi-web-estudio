@@ -1,8 +1,11 @@
-
-function irPlanes() {
-  document.getElementById("planes").scrollIntoView();
+function irRegistro() {
+  window.location.href = "/register.html";
 }
 
-async function pagar() {
-  alert("Aquí conectas Stripe 💳");
+function irPlanes() {
+  document.querySelector(".planes").scrollIntoView({ behavior: "smooth" });
+}
+
+function irPremium() {
+  alert("Aquí puedes poner pagos después 💳");
 }
