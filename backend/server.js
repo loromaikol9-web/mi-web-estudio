@@ -4,24 +4,27 @@ const path = require("path");
 
 const app = express();
 
-// 🔥 Middlewares
+// IMPORTANTE
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "../frontend"))); // ajusta si tu carpeta se llama diferente
+app.use(express.static(path.join(__dirname, "../frontend")));
 
-// 🔗 CONEXIÓN MONGODB
-mongoose.connect("mongodb+srv://loromaikol9_db_user:Cristian123@cluster0.v1iwu8u.mongodb.net/miapp?retryWrites=true&w=majority")
-  .then(() => console.log("Mongo conectado 🔥"))
-  .catch(err => console.log("Error Mongo:", err));
+// CONEXIÓN MONGODB
+mongoose.connect("mongodb+srv://loromaikol9_db_user:Cristian123@cluster0.v1iwu8u.mongodb.net/miapp?retryWrites=true&w=majority", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("Mongo conectado"))
+.catch(err => console.log(err));
 
-// 📦 MODELO USUARIO
-const userSchema = new mongoose.Schema({
-  username: String,
+// MODELO
+const usuarioSchema = new mongoose.Schema({
+  email: String,
   password: String
 });
 
-const Usuario = mongoose.model("Usuario", userSchema);
+const Usuario = mongoose.model("Usuario", usuarioSchema);
 
-// 🌐 RUTAS HTML
+// RUTAS HTML
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
@@ -34,31 +37,33 @@ app.get("/register", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/register.html"));
 });
 
-// 📝 REGISTER
+// REGISTRO
 app.post("/register", async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    const existe = await Usuario.findOne({ username });
+    const existe = await Usuario.findOne({ email });
 
     if (existe) {
-      return res.json({ ok: false, msg: "Usuario ya existe" });
+      return res.json({ ok: false });
     }
 
-    await new Usuario({ username, password }).save();
+    const nuevo = new Usuario({ email, password });
+    await nuevo.save();
 
     res.json({ ok: true });
-  } catch (err) {
-    res.json({ ok: false, msg: "Error servidor" });
+  } catch (error) {
+    console.log(error);
+    res.json({ ok: false });
   }
 });
 
-// 🔐 LOGIN
+// LOGIN
 app.post("/login", async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    const user = await Usuario.findOne({ username });
+    const user = await Usuario.findOne({ email });
 
     if (!user) {
       return res.json({ ok: false });
@@ -70,12 +75,13 @@ app.post("/login", async (req, res) => {
 
     res.json({ ok: true });
 
-  } catch (err) {
+  } catch (error) {
+    console.log(error);
     res.json({ ok: false });
   }
 });
 
-// 🚀 SERVER
+// SERVER
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Servidor activo en puerto " + PORT);
