@@ -1,36 +1,38 @@
+
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 
 const app = express();
 
-// Middlewares
+// MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// 🔥 SERVIR ARCHIVOS ESTÁTICOS (ESTO ES LA CLAVE)
 app.use(express.static(__dirname));
 
-// MongoDB
-mongoose.connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/proweb")
-.then(() => console.log("✅ MongoDB conectado"))
-.catch(err => console.log("❌ Error:", err));
+// CONEXIÓN MONGO
+mongoose.connect("mongodb+srv://loromaikol9_db_user:Cristian123@cluster0.v1iwu8u.mongodb.net/miapp?retryWrites=true&w=majority")
+.then(() => console.log("🟢 Mongo conectado"))
+.catch(err => console.log(err));
 
-// Modelo
+// MODELO
 const Usuario = mongoose.model("Usuario", {
   username: String,
   password: String
 });
 
-// RUTAS HTML
-app.get("/", (req, res) => res.sendFile(path.join(__dirname, "index.html")));
-app.get("/login", (req, res) => res.sendFile(path.join(__dirname, "login.html")));
-app.get("/register", (req, res) => res.sendFile(path.join(__dirname, "register.html")));
-app.get("/dashboard", (req, res) => res.sendFile(path.join(__dirname, "dashboard.html")));
+// RUTA PRINCIPAL
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
 // REGISTER
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
-  const existe = await Usuario.findOne({ username });
 
+  const existe = await Usuario.findOne({ username });
   if (existe) return res.json({ ok: false, msg: "Usuario ya existe" });
 
   await new Usuario({ username, password }).save();
@@ -50,4 +52,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log("🚀 Servidor activo"));
+// PUERTO
+app.listen(3000, () => {
+  console.log("🚀 Servidor activo");
+});
