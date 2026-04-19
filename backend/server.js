@@ -6,7 +6,7 @@ const app = express();
 
 // IMPORTANTE
 app.use(express.json());
-app.use(express.static(__dirname)); // sirve archivos desde la raíz
+app.use(express.static(__dirname));
 
 // CONEXIÓN MONGODB
 mongoose.connect("mongodb+srv://loromaikol9_db_user:Cristian123@cluster0.v1iwu8u.mongodb.net/miapp?retryWrites=true&w=majority")
@@ -46,6 +46,7 @@ app.post("/register", async (req, res) => {
   }
 
   await new Usuario({ username, password }).save();
+
   res.json({ ok: true });
 });
 
