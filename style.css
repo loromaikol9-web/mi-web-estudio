@@ -1,79 +1,67 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0b0b15, #1a1a2e);
+  font-family: Arial;
+  background: linear-gradient(135deg, #0b0b1f, #1a0033);
   color: white;
 }
 
-.nav {
+/* HEADER */
+header {
   display: flex;
   justify-content: space-between;
-  padding: 15px 30px;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(10px);
+  padding: 20px;
+  background: rgba(0,0,0,0.3);
 }
 
-.nav a {
-  color: #ccc;
-  margin-left: 20px;
+nav a {
+  margin: 0 10px;
+  color: white;
   text-decoration: none;
 }
 
+/* HERO */
 .hero {
   text-align: center;
   padding: 100px 20px;
 }
 
-.hero h1 {
-  font-size: 35px;
-  background: linear-gradient(45deg,#a78bfa,#7c3aed);
-  -webkit-background-clip: text;
-  color: transparent;
+.hero h1 span {
+  color: #a855f7;
 }
 
 button {
-  background: linear-gradient(45deg,#7c3aed,#a78bfa);
+  padding: 12px 25px;
+  margin: 10px;
+  background: #7c3aed;
   border: none;
-  padding: 12px 20px;
-  border-radius: 12px;
   color: white;
+  border-radius: 10px;
   cursor: pointer;
 }
 
+.demo {
+  background: transparent;
+  border: 1px solid #7c3aed;
+}
+
+/* PLANES */
 .planes {
+  text-align: center;
+  padding: 60px;
+}
+
+.cards {
   display: flex;
   justify-content: center;
   gap: 20px;
-  padding: 50px;
-  flex-wrap: wrap;
 }
 
 .card {
-  background: #141427;
-  padding: 25px;
-  border-radius: 20px;
-  width: 230px;
-  text-align: center;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: scale(1.05);
+  background: rgba(255,255,255,0.05);
+  padding: 30px;
+  border-radius: 15px;
 }
 
 .premium {
-  border: 2px solid #a78bfa;
-}
-
-input {
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  width: 80%;
-  margin: 10px 0;
-}
-
-.form {
-  text-align: center;
-  margin-top: 100px;
+  border: 2px solid #a855f7;
 }
