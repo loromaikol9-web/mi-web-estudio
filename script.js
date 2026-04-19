@@ -3,7 +3,7 @@ function irRegistro() {
 }
 
 function irPlanes() {
-  document.querySelector("Oro plata bronce").scrollIntoView({ behavior: "smooth" });
+  document.querySelector(".planes").scrollIntoView({ behavior: "smooth" });
 }
 
 function irPremium() {
