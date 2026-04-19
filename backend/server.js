@@ -1,67 +1,72 @@
+
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 
 const app = express();
 
-// Middleware
+// 🔒 Evitar errores silenciosos
+process.on("uncaughtException", err => {
+  console.log("Error:", err);
+});
+
+// 📦 Middlewares
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({ extended: true }));
 
-// 🔐 CONEXIÓN (usa variable de entorno luego)
-mongoose.connect(process.env.MONGO_URI || "mongodb+srv://loromaikol9_db_user:Cristian123@cluster0.v1iwu8u.mongodb.net/miapp?retryWrites=true&w=majority")
-.then(() => console.log("Mongo conectado"))
-.catch(err => console.log(err));
+// 📁 Archivos estáticos (HTML, CSS, JS)
+app.use(express.static(path.join(__dirname, "../public")));
 
-// MODELO
+// 🔗 Conexión a MongoDB
+mongoose.connect("mongodb+srv://loromaikol9_db_user:Cristian123@cluster0.v1iwu8u.mongodb.net/miapp?retryWrites=true&w=majority")
+.then(() => console.log("✅ Mongo conectado"))
+.catch(err => console.log("❌ Error Mongo:", err));
+
+// 👤 Modelo Usuario
 const Usuario = mongoose.model("Usuario", {
   username: String,
   password: String
 });
 
-// RUTAS HTML
+// 🌐 Rutas
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/index.html"));
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/login.html"));
+  res.sendFile(path.join(__dirname, "../public/login.html"));
 });
 
 app.get("/register", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/register.html"));
+  res.sendFile(path.join(__dirname, "../public/register.html"));
 });
 
-app.get("/dashboard", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/dashboard.html"));
-});
-
-// REGISTER
+// 📝 Registro
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
 
-  const existe = await Usuario.findOne({ username });
-  if (existe) {
-    return res.json({ ok: false });
-  }
+  const nuevo = new Usuario({ username, password });
+  await nuevo.save();
 
-  await new Usuario({ username, password }).save();
-  res.json({ ok: true });
+  res.send("Usuario registrado");
 });
 
-// LOGIN
+// 🔑 Login
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
   const user = await Usuario.findOne({ username, password });
 
-  if (!user) {
-    return res.json({ ok: false });
+  if (user) {
+    res.redirect("/dashboard.html");
+  } else {
+    res.send("Datos incorrectos");
   }
-
-  res.json({ ok: true });
 });
 
-// PUERTO
+// 🚀 PUERTO (CLAVE PARA RENDER)
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("Servidor corriendo en " + PORT));
+
+app.listen(PORT, () => {
+  console.log("🔥 Servidor corriendo en puerto " + PORT);
+});
