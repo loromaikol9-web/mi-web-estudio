@@ -10,17 +10,27 @@
 <button onclick="register()">Registrarse</button>
 
 <script>
-async function register(){
+const user = document.getElementById("user");
+const pass = document.getElementById("pass");
+
+async function register() {
   const res = await fetch("/register", {
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
       username: user.value,
       password: pass.value
     })
   });
 
-  alert("Registrado");
+  const data = await res.json();
+
+  if (data.ok) {
+    alert("Registrado correctamente ✅");
+    window.location = "/login";
+  } else {
+    alert("Usuario ya existe ❌");
+  }
 }
 </script>
 
