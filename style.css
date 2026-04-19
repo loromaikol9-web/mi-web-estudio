@@ -1,41 +1,42 @@
 body {
   margin: 0;
   font-family: Arial;
-  background: linear-gradient(135deg, #0b0b1f, #1a0033);
+  background: linear-gradient(180deg, #0b001a, #120028);
   color: white;
+  text-align: center;
 }
 
-/* HEADER */
 header {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  background: rgba(0,0,0,0.3);
 }
 
-nav a {
-  margin: 0 10px;
-  color: white;
-  text-decoration: none;
-}
-
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 100px 20px;
-}
-
-.hero h1 span {
+header span {
   color: #a855f7;
 }
 
-button {
-  padding: 12px 25px;
-  margin: 10px;
-  background: #7c3aed;
-  border: none;
+nav a {
   color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.hero {
+  margin-top: 80px;
+}
+
+.hero span {
+  color: #a855f7;
+}
+
+.btns button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
   border-radius: 10px;
+  background: #7c3aed;
+  color: white;
   cursor: pointer;
 }
 
@@ -44,10 +45,8 @@ button {
   border: 1px solid #7c3aed;
 }
 
-/* PLANES */
 .planes {
-  text-align: center;
-  padding: 60px;
+  margin-top: 100px;
 }
 
 .cards {
@@ -57,11 +56,12 @@ button {
 }
 
 .card {
-  background: rgba(255,255,255,0.05);
-  padding: 30px;
+  background: #1a002e;
+  padding: 20px;
   border-radius: 15px;
 }
 
 .premium {
   border: 2px solid #a855f7;
 }
+
