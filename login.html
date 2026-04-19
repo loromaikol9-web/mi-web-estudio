@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html>
-<body style="background:black;color:white;text-align:center">
-
-<h2>Login</h2>
-
-<input id="user" placeholder="Usuario"><br><br>
-<input id="pass" type="password" placeholder="Contraseña"><br><br>
-
-<button onclick="login()">Entrar</button>
+<form id="loginForm">
+  <input type="text" placeholder="Usuario" id="user">
+  <input type="password" placeholder="Contraseña" id="pass">
+  <button type="submit">Entrar</button>
+</form>
 
 <script>
-async function login(){
+document.getElementById("loginForm").onsubmit = async (e) => {
+  e.preventDefault();
+
   const res = await fetch("/login", {
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
       username: user.value,
       password: pass.value
@@ -29,6 +26,3 @@ async function login(){
   }
 }
 </script>
-
-</body>
-</html>
